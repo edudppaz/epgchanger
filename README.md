@@ -9,3 +9,7 @@ into APIC.
 Use at your own risk. Needs cleanup, checks, testings, etc. This was done in a couple hours as a labbing excersice :)
 
 Ideas: Add code to push changes to vCenter as when the EPG name is changed, all VMs are left without port-group (as the port-group is removed if the APIC is integrated with vCenter), we could assign the VMs to the new port-group via the same script ;)
+
+### v0.2 ###
+Added input for Hostnames and IP Adresses
+Fixed a bug where if the EPG name and APP name was the same, the script would create a new app due to Replace not being properly defined.
