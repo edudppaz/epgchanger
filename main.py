@@ -6,7 +6,10 @@ import utils
 import devclass
 
 
-""" Script made to do renaming of EPGs on the APIC fabric, this script is NOT safe for use on
+""" 
+Current: v0.2
+
+Script made to do renaming of EPGs on the APIC fabric, this script is NOT safe for use on
 production environments without proper testing first this was tested only on a lab environments
 and with basic EPG relations (Contracts, Domains, Attachments), other tests are needed:
 - Service Graphs on EPG
