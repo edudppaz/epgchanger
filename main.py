@@ -22,12 +22,18 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Sets validation flag to enter the loop
 VALIDATION = False
 # Validation loop for IP address #
+apic_tries = 0
 while VALIDATION is False:
-# Asks user for the APIC management ip address #
-    ACI_INPUT = input("\nPlease enter your APIC management ip address : ")
-    VALIDATION = utils.valid_apic(ACI_INPUT)
-    if VALIDATION is False:
-        print("You have entered an invalid APIC, please check and re-enter")
+    if apic_tries < 3:
+        # Asks user for the APIC management ip address #
+        ACI_INPUT = input("\nPlease enter your APIC management ip address : ")
+        VALIDATION = utils.valid_apic(ACI_INPUT)
+        if VALIDATION is False:
+            print("You have entered an invalid APIC")
+            apic_tries += 1
+    else:
+        print("You have entered an invalid APIC 3 times, exiting script")
+        exit()
 
 # create credentials structure
 while True:
