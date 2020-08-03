@@ -39,8 +39,10 @@ class EPG():
         self.full_dn = full_dn
         for value in self.full_dn.split("/"):
             if "ap-" in value:
+                self.fullapname = value
                 self.ap = value[3:]
             if "epg-" in value:
+                self.fullepgname = value
                 self.name = value[4:]
 
     def getConfigAPIC(self, config="x"):
