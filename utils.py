@@ -1,26 +1,31 @@
 import devclass
 import requests
 import string
+import ipaddress
+import re
+
+def valid_apic(apic):
+    fqdn_re = re.compile('(?=^.{4,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\.)+[a-zA-Z]{2,63}\.?$)')
+    try:
+        apic_input = ipaddress.ip_address(apic)
+        if apic_input.version == 4:
+            return True
+        elif apic_input.version == 6:
+                return True
+    except ValueError:
+        if fqdn_re.search(apic):
+            return True
+        else:
+            return False
 
 def valid_ip(ip_add):
-    ip_add_list = ip_add.split(".")
-    ## Invalidates IP if it has more than 4 octets ##
-    if len(ip_add_list) > 4:
+    try:
+        host_bytes = address.split('.')
+        valid = [int(b) for b in host_bytes]
+        valid = [b for b in valid if b >= 0 and b<=255]
+        return len(host_bytes) == 4 and len(valid) == 4
+    except:
         return False
-    ## Invalidates IP ##
-    elif int(ip_add_list[0]) > 223:
-        return False
-    ## Invalidates IP ##
-    elif int(ip_add_list[0]) == 127:
-        return False
-    ## Invalidates IP ##
-    elif (int(ip_add_list[0]) == 169) and (int(ip_add_list[1]) == 254):
-        return False
-    ## Iterates through the last 3 objects and if one if them is invalid, sets flags and breaks ##
-    for i in range(1, 4):
-        if (int(ip_add_list[i]) < 0) or (int(ip_add_list[i]) > 255):
-            return False
-    return True
 
 def valid_input(to_check):
     other_string = '-_'

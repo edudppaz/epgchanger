@@ -24,18 +24,17 @@ VALIDATION = False
 # Validation loop for IP address #
 while VALIDATION is False:
 # Asks user for the APIC management ip address #
-    ACI_IP = input("\nPlease enter your APIC management ip address : ")
-    VALIDATION = True
- #   VALIDATION = utils.valid_ip(ACI_IP)
+    ACI_INPUT = input("\nPlease enter your APIC management ip address : ")
+    VALIDATION = utils.valid_apic(ACI_INPUT)
     if VALIDATION is False:
-        print("You have entered an invalid IP address, please check and re-enter")
+        print("You have entered an invalid APIC, please check and re-enter")
 
 # create credentials structure
 while True:
     try:
         ACI_USER = input("\nPlease enter your APIC management username : ")
         ACI_PWD = getpass.getpass("\nPlease enter your APIC management password : ")
-        APIC = devclass.APIC_CLUSTER(ACI_IP, ACI_USER, ACI_PWD)
+        APIC = devclass.APIC_CLUSTER(ACI_INPUT, ACI_USER, ACI_PWD)
         APIC.acilogin()
         break
     except KeyError:
