@@ -13,7 +13,7 @@ Script made to do renaming of EPGs on the APIC fabric, this script is NOT safe f
 production environments without proper testing first this was tested only on a lab environments
 and with basic EPG relations (Contracts, Domains, Attachments), other tests are needed:
 - Service Graphs on EPG
-- Static Lefas
+- Static Leafs
 - Fiber Channel Paths
 - L3 Out EPGs
 - L2 Out EPGs
@@ -71,6 +71,7 @@ def main():
 
     # Creates an object for the old EPG #
     OLD_EPG = devclass.EPG(APIC, TENANT, EPG_DN)
+    # Gets the config from the EPG #
     OLD_EPG_CFG = OLD_EPG.getConfigAPIC()
     # Prints warning showing the config to be modified #
     print("""\n The following XML configuration on the chosen EPG will be modified,
@@ -98,7 +99,7 @@ def main():
         else:
             print("You have entered an invalid char, valid chars are a-z,A-Z,-,_\n")
             print("Please enter a new EPG name\n")
-    #
+    
     print("New epg name is " + NEW_EPG_NAME)
     NEW_EPG_FULLNAME = "epg-" + NEW_EPG_NAME
 
@@ -110,10 +111,11 @@ def main():
 
     # Creates new config replacing name from old one #
     NEW_EPG_CFG = OLD_EPG_CFG.replace(OLD_EPG.fullepgname, NEW_EPG.fullepgname)
+    # Fix for when AP name == EPG name #
     NEW_EPG_CFG = NEW_EPG_CFG.replace('name="'+ OLD_EPG.name + '"', 'name="'+ NEW_EPG.name + '"')
 
     # Final Validation input #
-    FINAL_VAL = input("The old EPG is going to be deleted now, press ENTER to continue or CTRL+C to cancel")
+    FINAL_VAL = input("The old EPG is going to be deleted now, press ENTER to continue or CTRL+C to cancel  ")
 
     # Add headers to full config before push ##
     EPG_FULL_NEW = '<fvTenant name="' + NEW_EPG.tenant + '"><fvAp name="' + NEW_EPG.ap + '">' + NEW_EPG_CFG + '</fvAp></fvTenant>'

@@ -60,7 +60,7 @@ class EPG():
         COOKIES_VAR['APIC-Cookie'] = self.apic.token
         # Prepares URL for deletion #
         POST_URL = "https://" + self.apic.ip_add + "/api/mo/uni.xml"
-        print("Deleting old epg.................")
+        print("Deleting OLD epg.................")
         DELETE = '<fvTenant name="' + self.tenant + '"><fvAp name="' + self.ap + '"><fvAEPg descr="" dn="' + self.full_dn + '" name="' + self.name + '" status=deleted></fvAEPg></fvAp></fvTenant>'
         POST = requests.post(POST_URL, data=DELETE, cookies=COOKIES_VAR, verify=False)
         time.sleep(1)
@@ -70,7 +70,7 @@ class EPG():
         COOKIES_VAR['APIC-Cookie'] = self.apic.token
         # Prepares URL for add #
         POST_URL = "https://" + self.apic.ip_add + "/api/mo/uni.xml"
-        print("Adding old epg.................")
+        print("Adding NEW epg.................")
         EPG_POST = requests.post(POST_URL, data=cfg, cookies=COOKIES_VAR, verify=False)
         time.sleep(1)
 print("\n\n\nNew EPG (Rename) has been pushed. Please verify on APIC GUI or CLI\n\n\n")
