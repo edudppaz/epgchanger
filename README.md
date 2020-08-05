@@ -1,6 +1,6 @@
 ### WORK IN PROGRESS ###
 
-Python script done  labbing to test changing an EPG name via POST pushes into APIC (cant be done in any other way).
+Python script done  labbing to test changing an EPG name via POST pushes into APIC (cant be done via GUI).
 
 It basically logs into APIC, retrieves an EPG list, asks the user
 which EPG would like to change name, retrieves the XML code for the EPG, modifies the code (putting the new name in) and pushes the new XML
