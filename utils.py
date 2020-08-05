@@ -57,7 +57,7 @@ def ChooseTenant(list):
     tenant_dict = {}
     for value in list:
         tenant_dict[list.index(value)] = value
-        print(str(list.index(value)) + " - " + value)
+        print(str(list.index(value)) + " # " + value)
     while True:
         TENANT_CHOICE = int(input("Enter tenant number : "))
         if TENANT_CHOICE in tenant_dict:
@@ -78,7 +78,7 @@ def ChooseEPG(list):
     epg_dict = {}
     for value in list:
         epg_dict[list.index(value)] = value.split("/")[3].split("epg-")[1]
-        print(str(list.index(value)) + "-" + value.split("/")[3].split("epg-")[1])
+        print(str(list.index(value)) + " # " + value.split("/")[3].split("epg-")[1])
     while True:
         EPG_CHOICE = int(input("Enter EPG number : "))
         if EPG_CHOICE in epg_dict:

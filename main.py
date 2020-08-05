@@ -89,7 +89,7 @@ def main():
         exit()
 
     # Defines new EPG data #
-    print("Enter the new EPG name \n")
+    print("Enter the new name for " + OLD_EPG.name)
     # Fetches input and validates the new EPG name #
     while True:
         NEW_EPG_NAME = input("Name : ")
@@ -98,7 +98,7 @@ def main():
             break
         else:
             print("You have entered an invalid char, valid chars are a-z,A-Z,-,_\n")
-            print("Please enter a new EPG name\n")
+            print("Please enter the new name: \n")
     
     print("New epg name is " + NEW_EPG_NAME)
     NEW_EPG_FULLNAME = "epg-" + NEW_EPG_NAME
@@ -115,7 +115,7 @@ def main():
     NEW_EPG_CFG = NEW_EPG_CFG.replace('name="'+ OLD_EPG.name + '"', 'name="'+ NEW_EPG.name + '"')
 
     # Final Validation input #
-    FINAL_VAL = input("The old EPG is going to be deleted now, press ENTER to continue or CTRL+C to cancel  ")
+    FINAL_VAL = input("The old EPG is going to be deleted now, press ENTER to continue or CTRL+C to cancel   ")
 
     # Add headers to full config before push ##
     EPG_FULL_NEW = '<fvTenant name="' + NEW_EPG.tenant + '"><fvAp name="' + NEW_EPG.ap + '">' + NEW_EPG_CFG + '</fvAp></fvTenant>'
