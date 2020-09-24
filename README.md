@@ -1,3 +1,6 @@
+Usage:
+run main.py on Python3
+
 ### WORK IN PROGRESS ###
 
 Python script done  labbing to test changing an EPG name via POST pushes into APIC (cant be done via GUI).
